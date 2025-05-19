@@ -7,6 +7,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/halamanutama', function () {
+    return view('halamanutama');
+})->name('halamanutama');
+
+Route::get('/inputsurat', function () {
+    return view('inputsurat');
+})->name('inputsurat');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
