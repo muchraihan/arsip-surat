@@ -15,6 +15,14 @@ Route::get('/inputsurat', function () {
     return view('inputsurat');
 })->name('inputsurat');
 
+Route::get('/tampilsurat', function () {
+    return view('tampilsurat');
+})->name('tampilsurat');
+
+Route::get('/lihatsurat', function () {
+    return view('lihatsurat');
+})->name('lihatsurat');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
