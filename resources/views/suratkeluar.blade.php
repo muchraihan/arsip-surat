@@ -3,8 +3,8 @@
 @section('content')
 <div class="bg-white shadow-md rounded p-6 w-full">
     <div class="flex items-center justify-between mb-4">
-        <h2 class="text-xl font-semibold">Detail Surat Masuk</h2>
-        <a href="#" class="text-blue-600 hover:underline text-sm">← Kembali</a>
+        <h2 class="text-xl font-semibold">Detail Surat Keluar</h2>
+        <a href="{{ route('tablesuratkeluar') }}" class="text-blue-600 hover:underline text-sm">← Kembali</a>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">

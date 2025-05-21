@@ -4,24 +4,40 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('halamanutama');
 })->name('home');
 
 Route::get('/halamanutama', function () {
     return view('halamanutama');
 })->name('halamanutama');
 
-Route::get('/inputsurat', function () {
-    return view('inputsurat');
-})->name('inputsurat');
+Route::get('/inputsuratmasuk', function () {
+    return view('inputsuratmasuk');
+})->name('inputsuratmasuk');
+
+Route::get('/inputsuratkeluar', function () {
+    return view('inputsuratkeluar');
+})->name('inputsuratkeluar');
 
 Route::get('/tampilsurat', function () {
     return view('tampilsurat');
 })->name('tampilsurat');
 
-Route::get('/lihatsurat', function () {
-    return view('lihatsurat');
-})->name('lihatsurat');
+Route::get('/suratmasuk', function () {
+    return view('suratmasuk');
+})->name('suratmasuk');
+
+Route::get('/suratkeluar', function () {
+    return view('suratkeluar');
+})->name('suratkeluar');
+
+Route::get('/tablesuratmasuk', function () {
+    return view('tablesuratmasuk');
+})->name('tablesuratmasuk');
+
+Route::get('/tablesuratkeluar', function () {
+    return view('tablesuratkeluar');
+})->name('tablesuratkeluar');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

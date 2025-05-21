@@ -5,25 +5,40 @@
     </div>
 
     <nav class="space-y-2">
-        <a href="#" class="flex items-center p-2 bg-blue-600 rounded hover:bg-blue-700">
+        <a href="{{ route('halamanutama') }}"
+           class="flex items-center p-2 rounded {{ request()->routeIs('halamanutama') ? 'bg-blue-600 hover:bg-blue-700' : 'hover:bg-gray-800' }}">
             <span class="material-icons mr-2">dashboard</span> Dashboard
         </a>
-        <a href="#" class="flex items-center p-2 hover:bg-gray-800 rounded">
+
+        <!-- <a href="#" class="flex items-center p-2 hover:bg-gray-800 rounded">
             <span class="material-icons mr-2">settings</span> Setup Management
-        </a>
-        <a href="#" class="flex items-center p-2 hover:bg-gray-800 rounded">
+        </a> -->
+
+        <!-- <a href="#" class="flex items-center p-2 hover:bg-gray-800 rounded">
             <span class="material-icons mr-2">folder</span> Data Master
+        </a> -->
+
+        <a href="{{ route('inputsuratmasuk') }}"
+           class="flex items-center p-2 rounded {{ request()->routeIs('inputsuratmasuk') ? 'bg-blue-600 hover:bg-blue-700' : 'hover:bg-gray-800' }}">
+            <span class="material-icons mr-2">mail</span> Input Surat Masuk
         </a>
-        <a href="#" class="flex items-center p-2 hover:bg-gray-800 rounded">
-            <span class="material-icons mr-2">mail</span> Surat Masuk
+
+        <a href="{{ route('inputsuratkeluar') }}"
+           class="flex items-center p-2 rounded {{ request()->routeIs('inputsuratkeluar') ? 'bg-blue-600 hover:bg-blue-700' : 'hover:bg-gray-800' }}">
+            <span class="material-icons mr-2">mail</span> Input Surat Keluar
         </a>
-        <a href="#" class="flex items-center p-2 hover:bg-gray-800 rounded">
+
+        <!-- <a href="#" class="flex items-center p-2 hover:bg-gray-800 rounded">
             <span class="material-icons mr-2">send</span> Surat Keluar
-        </a>
-        <a href="#" class="flex items-center p-2 hover:bg-gray-800 rounded">
+        </a> -->
+
+        <a href="#"
+           class="flex items-center p-2 rounded {{ request()->is('report') ? 'bg-blue-600 hover:bg-blue-700' : 'hover:bg-gray-800' }}">
             <span class="material-icons mr-2">assessment</span> Report
         </a>
-        <a href="#" class="flex items-center p-2 hover:bg-gray-800 rounded">
+
+        <a href="#"
+           class="flex items-center p-2 rounded {{ request()->is('backup') ? 'bg-blue-600 hover:bg-blue-700' : 'hover:bg-gray-800' }}">
             <span class="material-icons mr-2">cloud_download</span> Backup Database
         </a>
     </nav>

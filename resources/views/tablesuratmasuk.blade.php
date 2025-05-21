@@ -20,6 +20,11 @@
         </form>
     </div>
 
+    {{-- Tombol Kembali --}}
+    <div class="mb-4">
+        <a href="{{ route('halamanutama') }}" class="text-blue-600 hover:underline text-sm">← Kembali ke Halaman Utama</a>
+    </div>
+
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-100">
@@ -33,7 +38,7 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-                {{-- Contoh data statis, nanti bisa diganti dengan data dari controller --}}
+                {{-- Contoh data statis --}}
                 @for ($i = 1; $i <= 5; $i++)
                 <tr>
                     <td class="px-4 py-2 text-sm text-gray-700">{{ $i }}</td>
@@ -42,7 +47,7 @@
                     <td class="px-4 py-2 text-sm text-gray-700">Instansi {{ $i }}</td>
                     <td class="px-4 py-2 text-sm text-gray-700">Perihal Surat {{ $i }}</td>
                     <td class="px-4 py-2 text-sm">
-                        <a href="#" class="text-blue-600 hover:underline text-sm">Lihat</a>
+                        <a href="{{ route('suratmasuk') }}" class="text-blue-600 hover:underline text-sm">Lihat</a>
                     </td>
                 </tr>
                 @endfor
