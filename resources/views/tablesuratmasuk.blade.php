@@ -8,6 +8,7 @@
             <input
                 type="text"
                 name="search"
+                value="{{ request('search') }}"
                 placeholder="Cari surat..."
                 class="border border-gray-300 rounded-l px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
             >
@@ -38,19 +39,22 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-                {{-- Contoh data statis --}}
-                @for ($i = 1; $i <= 5; $i++)
+                @forelse ($suratMasuk as $index => $surat)
                 <tr>
-                    <td class="px-4 py-2 text-sm text-gray-700">{{ $i }}</td>
-                    <td class="px-4 py-2 text-sm text-gray-700">SM-00{{ $i }}/2025</td>
-                    <td class="px-4 py-2 text-sm text-gray-700">2025-05-1{{ $i }}</td>
-                    <td class="px-4 py-2 text-sm text-gray-700">Instansi {{ $i }}</td>
-                    <td class="px-4 py-2 text-sm text-gray-700">Perihal Surat {{ $i }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $index + 1 }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->nomor_surat }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->tanggal_surat }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->pengirim }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->perihal }}</td>
                     <td class="px-4 py-2 text-sm">
-                        <a href="{{ route('suratmasuk') }}" class="text-blue-600 hover:underline text-sm">Lihat</a>
+                        <a href="{{ route('suratmasuk.show', $surat->id) }}" class="text-blue-600 hover:underline text-sm">Lihat</a>
                     </td>
                 </tr>
-                @endfor
+                @empty
+                <tr>
+                    <td colspan="6" class="px-4 py-2 text-sm text-gray-500 text-center">Tidak ada data surat masuk.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

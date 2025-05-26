@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\SuratMasukController;
+
+Route::get('/surat-masuk/create', [SuratMasukController::class, 'create'])->name('suratmasuk.create');
+Route::post('/surat-masuk/create', [SuratMasukController::class, 'store'])->name('suratmasuk.store');
+Route::get('/suratmasuk', [SuratMasukController::class, 'index'])->name('suratmasuk.index');
+Route::get('/suratmasuk/{id}', [SuratMasukController::class, 'show'])->name('suratmasuk.show'); // untuk tombol "Lihat"
 
 Route::get('/', function () {
     return view('halamanutama');

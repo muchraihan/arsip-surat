@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Arsip-Surat Kemenag</title>
+    <link rel="icon" type="image/png" href="{{ asset('logokemenag.png') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @vite('resources/css/app.css')
 </head>

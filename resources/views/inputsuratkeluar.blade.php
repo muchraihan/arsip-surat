@@ -32,14 +32,12 @@
 
                 <div class="mb-4">
                     <label for="kategori" class="block text-sm font-medium text-gray-700">Kategori</label>
-                    <select name="kategori" id="kategori" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" onchange="toggleInput(this)">
+                    <select name="kategori" id="kategori" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                         <option value="">-- Pilih Kategori --</option>
                         <option value="Kepala">Kepala</option>
                         <option value="Wakil">Wakil</option>
                         <option value="Sekretaris">Sekretaris</option>
-                        <option value="Lainnya">Lainnya...</option>
                     </select>
-                    <input type="text" name="kategori_manual" id="kategori_input" placeholder="Tulis kategori lain..." class="mt-2 hidden w-full border border-gray-300 rounded-md shadow-sm p-2">
                 </div>
             </div>
 
@@ -47,32 +45,28 @@
             <div>
                 <div class="mb-4">
                     <label for="status_surat" class="block text-sm font-medium text-gray-700">Status Surat</label>
-                    <select name="status_surat" id="status_surat" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" onchange="toggleInput(this)">
+                    <select name="status_surat" id="status_surat" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                         <option value="">-- Pilih Status --</option>
                         <option value="Asli">Asli</option>
                         <option value="Tembusan">Tembusan</option>
-                        <option value="Lainnya">Lainnya...</option>
                     </select>
-                    <input type="text" name="status_surat_manual" id="status_surat_input" placeholder="Tulis status lain..." class="mt-2 hidden w-full border border-gray-300 rounded-md shadow-sm p-2">
                 </div>
 
                 <div class="mb-4">
                     <label for="sifat_surat" class="block text-sm font-medium text-gray-700">Sifat Surat</label>
-                    <select name="sifat_surat" id="sifat_surat" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" onchange="toggleInput(this)">
+                    <select name="sifat_surat" id="sifat_surat" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                         <option value="">-- Pilih Sifat --</option>
                         <option value="Penting">Penting</option>
                         <option value="Segera">Segera</option>
                         <option value="Rahasia">Rahasia</option>
-                        <option value="SAngat Rahasia">Sangat Rahasia</option>
+                        <option value="Sangat Rahasia">Sangat Rahasia</option>
                         <option value="Biasa">Biasa</option>
-                        <option value="Lainnya">Lainnya...</option>
                     </select>
-                    <input type="text" name="sifat_surat_manual" id="sifat_surat_input" placeholder="Tulis sifat lain..." class="mt-2 hidden w-full border border-gray-300 rounded-md shadow-sm p-2">
                 </div>
 
                 <div class="mb-4">
                     <label for="tujuan_surat" class="block text-sm font-medium text-gray-700">Tujuan Surat</label>
-                    <select name="tujuan_surat" id="tujuan_surat" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" onchange="toggleInput(this)">
+                    <select name="tujuan_surat" id="tujuan_surat" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                         <option value="">-- Pilih Tujuan --</option>
                         <option value="Kepala kantor">Kepala kantor</option>
                         <option value="Kasubbag TU">Kasubbag TU</option>
@@ -86,17 +80,15 @@
                         <option value="Perencana">Perencana</option>
                         <option value="Keuangan">Keuangan</option>
                         <option value="Kepegawaian">Kepegawaian</option>
-                        <option value="Barang Milik negara">Barang Milik Negara</option>
+                        <option value="Barang Milik Negara">Barang Milik Negara</option>
                         <option value="Humas">Humas</option>
                         <option value="Umum">Umum</option>
-                        <option value="Lainnya">Lainnya...</option>
                     </select>
-                    <input type="text" name="tujuan_surat_manual" id="tujuan_surat_input" placeholder="Tulis tujuan lain..." class="mt-2 hidden w-full border border-gray-300 rounded-md shadow-sm p-2">
                 </div>
 
                 <div class="mb-4">
                     <label for="petunjuk" class="block text-sm font-medium text-gray-700">Petunjuk</label>
-                    <select name="petunjuk" id="petunjuk" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" onchange="toggleInput(this)">
+                    <select name="petunjuk" id="petunjuk" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                         <option value="">-- Pilih Petunjuk --</option>
                         <option value="Kepala Hadir">Kepala hadir</option>
                         <option value="Tindak Lanjuti">Tindak Lanjuti</option>
@@ -106,9 +98,7 @@
                         <option value="Ingatkan">Ingatkan</option>
                         <option value="Simpan / Arsipkan">Simpan / Arsipkan</option>
                         <option value="Harap Hadir / Wakili">Harap Hadir / Wakili</option>
-                        <option value="Lainnya">Lainnya...</option>
                     </select>
-                    <input type="text" name="petunjuk_manual" id="petunjuk_input" placeholder="Tulis petunjuk lain..." class="mt-2 hidden w-full border border-gray-300 rounded-md shadow-sm p-2">
                 </div>
             </div>
         </div>
@@ -116,8 +106,8 @@
         {{-- Full width: bawah --}}
         <div class="mt-6">
             <div class="mb-4">
-                <label for="isi_kategori" class="block text-sm font-medium text-gray-700">Isi Kategori</label>
-                <input type="text" name="isi_kategori" id="isi_kategori" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                <label for="catatan" class="block text-sm font-medium text-gray-700">Catatan</label>
+                <input type="text" name="catatan" id="catatan" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
             </div>
 
             <div class="mb-4">
@@ -143,19 +133,4 @@
         </div>
     </form>
 </div>
-
-{{-- Script --}}
-<script>
-    function toggleInput(selectElement) {
-        const id = selectElement.id;
-        const input = document.getElementById(id + '_input');
-        if (selectElement.value === 'Lainnya') {
-            input.classList.remove('hidden');
-            input.required = true;
-        } else {
-            input.classList.add('hidden');
-            input.required = false;
-        }
-    }
-</script>
 @endsection
