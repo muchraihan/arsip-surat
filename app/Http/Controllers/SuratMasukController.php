@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SuratMasuk;
+use Illuminate\Support\Facades\Storage;
 
 class SuratMasukController extends Controller
 {
@@ -52,5 +53,51 @@ class SuratMasukController extends Controller
         return view('tablesuratmasuk', compact('suratMasuk'));
     }
 
+    public function show($id)
+    {
+        $surat = SuratMasuk::findOrFail($id);
+        return view('Dsuratmasuk', compact('surat'));
+    }
+    
+    
+    public function edit($id)
+    {
+        $surat = SuratMasuk::findOrFail($id);
+        return view('edit', compact('surat'));
+    }
 
+    public function update(Request $request, $id)
+    {
+        $surat = SuratMasuk::findOrFail($id);
+
+        $request->validate([
+            'nomor_surat' => 'required',
+            'tanggal_surat' => 'required|date',
+            'pengirim' => 'required',
+            'perihal' => 'required',
+            'kategori' => 'required',
+            'status_surat' => 'required',
+            'sifat_surat' => 'required',
+            'tujuan_surat' => 'required',
+            'petunjuk' => 'required',
+            'file' => 'nullable|mimes:pdf|max:2048',
+        ]);
+
+        $surat->fill($request->except('file'));
+
+        if ($request->hasFile('file')) {
+            if ($surat->file && Storage::exists('public/surat/' . $surat->file)) {
+                Storage::delete('public/surat/' . $surat->file);
+            }
+
+            $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
+            $request->file('file')->storeAs('public/surat', $fileName);
+            $surat->file = $fileName;
+        }
+
+        $surat->save();
+
+        return redirect()->route('suratmasuk.index')->with('success', 'Surat berhasil diperbarui!');
+    }
+    
 }

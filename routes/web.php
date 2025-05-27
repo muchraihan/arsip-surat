@@ -6,8 +6,12 @@ use App\Http\Controllers\SuratMasukController;
 
 Route::get('/surat-masuk/create', [SuratMasukController::class, 'create'])->name('suratmasuk.create');
 Route::post('/surat-masuk/create', [SuratMasukController::class, 'store'])->name('suratmasuk.store');
+
 Route::get('/suratmasuk', [SuratMasukController::class, 'index'])->name('suratmasuk.index');
-Route::get('/suratmasuk/{id}', [SuratMasukController::class, 'show'])->name('suratmasuk.show'); // untuk tombol "Lihat"
+Route::get('/suratmasuk/{id}', [SuratMasukController::class, 'show'])->name('suratmasuk.show');
+
+Route::get('/suratmasuk/{id}/edit', [SuratMasukController::class, 'edit'])->name('suratmasuk.edit');
+Route::put('/suratmasuk/{id}', [SuratMasukController::class, 'update'])->name('suratmasuk.update');
 
 Route::get('/', function () {
     return view('halamanutama');
@@ -29,9 +33,9 @@ Route::get('/tampilsurat', function () {
     return view('tampilsurat');
 })->name('tampilsurat');
 
-Route::get('/suratmasuk', function () {
-    return view('suratmasuk');
-})->name('suratmasuk');
+// Route::get('/suratmasuk2', function () {
+//     return view('suratmasuk');
+// })->name('suratmasuk');
 
 Route::get('/suratkeluar', function () {
     return view('suratkeluar');

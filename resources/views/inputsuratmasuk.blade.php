@@ -39,12 +39,7 @@
 
                 <div class="mb-4">
                     <label for="kategori" class="block text-sm font-medium text-gray-700">Kategori</label>
-                    <select name="kategori" id="kategori" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
-                        <option value="">-- Pilih Kategori --</option>
-                        <option value="Kepala">Kepala</option>
-                        <option value="Wakil">Wakil</option>
-                        <option value="Sekretaris">Sekretaris</option>
-                    </select>
+                    <input type="text" name="kategori" id="kategori" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
                 </div>
             </div>
 
