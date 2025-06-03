@@ -1,6 +1,27 @@
 @extends('components.layouts.app')
 
 @section('content')
+
+@if (session('success'))
+    <div 
+        id="success-notification" 
+        class="mb-4 p-4 rounded bg-green-100 text-green-800 border border-green-300"
+    >
+        {{ session('success') }}
+    </div>
+
+    <script>
+        // Setelah 3 detik, sembunyikan notifikasi
+        setTimeout(() => {
+            const notification = document.getElementById('success-notification');
+            if (notification) {
+                // Bisa kamu tambahkan animasi fade out dengan CSS jika mau
+                notification.style.display = 'none';
+            }
+        }, 3000);
+    </script>
+@endif
+
 <div class="bg-white shadow-md rounded p-6 w-full">
     <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-semibold">Daftar Surat Masuk</h2>
@@ -65,18 +86,37 @@
             <tbody class="divide-y divide-gray-200">
                 @forelse ($suratMasuk as $index => $surat)
                 <tr>
-                    <td class="px-4 py-2 text-sm text-gray-700">{{ $index + 1 }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $suratMasuk->firstItem() + $index }}</td>
                     <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->nomor_surat }}</td>
                     <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->tanggal_surat }}</td>
                     <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->pengirim }}</td>
                     <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->perihal }}</td>
                     <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->tujuan_surat }}</td>
                     <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->petunjuk }}</td>
-                    <td class="px-4 py-2 text-sm space-x-2">
-                        <a href="{{ route('suratmasuk.show', $surat->id) }}" class="inline-block bg-blue-500 text-white px-3 py-1 rounded text-xs hover:bg-blue-600 transition">Lihat</a>
-                        <a href="{{ route('suratmasuk.edit', $surat->id) }}" class="inline-block bg-yellow-500 text-white px-3 py-1 rounded text-xs hover:bg-yellow-600 transition">Edit</a>
+                    <td class="px-4 py-2 text-sm">
+                        <div class="flex space-x-2">
+                            <a href="{{ route('suratmasuk.show', $surat->id) }}"
+                                class="inline-flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded shadow transition duration-200"
+                                title="Lihat Surat">
+                                🔍
+                            </a>
+                            <a href="{{ route('suratmasuk.edit', $surat->id) }}"
+                                class="inline-flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded shadow transition duration-200"
+                                title="Edit Surat">
+                                ✏️
+                            </a>
+                            <form action="{{ route('suratmasuk.destroy', $surat->id) }}" method="POST"
+                                onsubmit="return confirm('Yakin ingin menghapus surat ini?')" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1.5 rounded shadow transition duration-200"
+                                    title="Hapus Surat">
+                                    🗑️
+                                </button>
+                            </form>
+                        </div>
                     </td>
-
                 </tr>
                 @empty
                 <tr>
@@ -85,6 +125,9 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+    <div class="mt-4">
+        {{ $suratMasuk->withQueryString()->links('pagination::tailwind') }}
     </div>
 </div>
 @endsection

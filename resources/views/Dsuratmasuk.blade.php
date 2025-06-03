@@ -5,7 +5,7 @@
     <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-semibold">Detail Surat Masuk</h2>
         <a href="{{ route('suratmasuk.index') }}" class="text-blue-600 hover:underline text-sm">← Kembali</a>
-    </div>
+    </div> 
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
@@ -58,18 +58,26 @@
         </div>
     </div>
 
-     {{-- File surat --}}
-    <div class="mt-4">
-        <p class="text-sm text-gray-600 mb-2">File Surat:</p>
+    {{-- File surat --}}
+    <div class="mt-6">
+        <p class="text-sm text-gray-600 mb-2 font-semibold">📄 File Surat:</p>
 
         @if($surat->file)
-            <iframe src="{{ asset('storage/surat/' . $surat->file) }}" width="100%" height="250px"></iframe>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-3">
+                <a href="{{ asset('storage/' . $surat->file) }}" 
+                class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-green-700 transition"
+                target="_blank">
+                    🔍 Buka Surat
+                </a>
 
-            <a href="{{ asset('storage/surat/' . $surat->file) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mt-4 inline-block" download>
-                Download Surat
-            </a>
+                <a href="{{ asset('storage/surat_masuk/' . $surat->file) }}" 
+                class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-blue-700 transition"
+                download>
+                    ⬇️ Download Surat
+                </a>
+            </div>
         @else
-            <p class="text-red-500">File surat tidak tersedia.</p>
+            <p class="text-red-500 italic">File surat tidak tersedia.</p>
         @endif
     </div>
 </div>

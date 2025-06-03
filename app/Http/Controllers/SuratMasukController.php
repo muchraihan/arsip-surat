@@ -28,11 +28,14 @@ class SuratMasukController extends Controller
             'catatan' => 'nullable|string',
             'isi_disposisi' => 'nullable|string',
             'disposisi_kasubbag' => 'nullable|string',
-            'file' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:5120', // max 5MB
         ]);
 
         if ($request->hasFile('file')) {
-            $validated['file'] = $request->file('file')->store('surat_masuk', 'public');
+            $file = $request->file('file');
+            $originalName = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('surat_masuk', $originalName, 'public');
+            $validated['file'] = $path;
         }
 
         SuratMasuk::create($validated);
@@ -40,18 +43,23 @@ class SuratMasukController extends Controller
         return redirect()->back()->with('success', 'Surat berhasil disimpan.');
     }
 
-    public function index(Request $request)
-    {
-        $search = $request->query('search');
 
-        $suratMasuk = SuratMasuk::when($search, function ($query, $search) {
-            return $query->where('nomor_surat', 'like', "%{$search}%")
-                        ->orWhere('pengirim', 'like', "%{$search}%")
-                        ->orWhere('perihal', 'like', "%{$search}%");
-        })->latest()->paginate(10);
+        public function index(Request $request)
+        {
+            $search = $request->query('search');
 
-        return view('tablesuratmasuk', compact('suratMasuk'));
-    }
+            $suratMasuk = SuratMasuk::when($search, function ($query, $search) {
+                return $query->where('nomor_surat', 'like', "%{$search}%")
+                            ->orWhere('pengirim', 'like', "%{$search}%")
+                            ->orWhere('perihal', 'like', "%{$search}%");
+            })
+            ->latest()
+            ->paginate(10)
+            ->appends(['search' => $search]); // Tambahkan ini agar pagination mempertahankan query pencarian
+
+            return view('tablesuratmasuk', compact('suratMasuk'));
+        }
+
 
     public function show($id)
     {
@@ -80,7 +88,7 @@ class SuratMasukController extends Controller
             'sifat_surat' => 'required',
             'tujuan_surat' => 'required',
             'petunjuk' => 'required',
-            'file' => 'nullable|mimes:pdf|max:2048',
+            'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:5120',
         ]);
 
         $surat->fill($request->except('file'));
@@ -91,7 +99,7 @@ class SuratMasukController extends Controller
             }
 
             $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
-            $request->file('file')->storeAs('public/surat', $fileName);
+            $request->file('file')->storeAs('public/surat_masuk', $fileName);
             $surat->file = $fileName;
         }
 
@@ -99,5 +107,20 @@ class SuratMasukController extends Controller
 
         return redirect()->route('suratmasuk.index')->with('success', 'Surat berhasil diperbarui!');
     }
-    
+
+    public function destroy($id)
+    {
+        $surat = SuratMasuk::findOrFail($id);
+
+        // Hapus file jika ada
+        if ($surat->file && Storage::disk('public')->exists($surat->file)) {
+            Storage::disk('public')->delete($surat->file);
+        }
+
+        // Hapus data dari database
+        $surat->delete();
+
+        return redirect()->route('suratmasuk.index')->with('success', 'Surat berhasil dihapus.');
+    }
+        
 }
