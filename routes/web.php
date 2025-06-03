@@ -30,16 +30,15 @@ Route::get('/suratkeluar/{id}/edit', [SuratKeluarController::class, 'edit'])->na
 Route::delete('/suratkeluar/{id}', [SuratKeluarController::class, 'destroy'])->name('suratkeluar.destroy');
 
 // Halaman Utama
-Route::get('/halamanutama', [HalamanUtamaController::class, 'index'])->name('halamanutama');
 
 
 Route::get('/', function () {
     return view('halamanutama');
 })->name('home');
 
-// Route::get('/halamanutama', function () {
-//     return view('halamanutama');
-// })->name('halamanutama');
+Route::get('/halamanutama', function () {
+    return view('halamanutama');
+})->name('halamanutama');
 
 Route::get('/inputsuratmasuk', function () {
     return view('inputsuratmasuk');
@@ -52,14 +51,6 @@ Route::get('/inputsuratkeluar', function () {
 Route::get('/tampilsurat', function () {
     return view('tampilsurat');
 })->name('tampilsurat');
-
-// Route::get('/suratmasuk2', function () {
-//     return view('suratmasuk');
-// })->name('suratmasuk');
-
-Route::get('/suratkeluar', function () {
-    return view('suratkeluar');
-})->name('suratkeluar');
 
 Route::get('/tablesuratmasuk', function () {
     return view('tablesuratmasuk');
