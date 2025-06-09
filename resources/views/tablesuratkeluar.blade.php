@@ -52,42 +52,36 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-                @if($suratKeluar->count() > 0)
-                    @foreach ($suratKeluar as $index => $surat)
-                    <tr>
-                        <td class="px-4 py-2 text-sm text-gray-700">{{ $suratKeluar->firstItem() + $index }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->nomor_surat }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->tanggal_surat }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->sifat_surat }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->lampiran }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->hal }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->tujuan_surat }}</td>
-                        <td class="px-4 py-2 text-sm">
-                            <div class="flex space-x-2">
-                                <a href="{{ route('suratkeluar.show', $surat->id) }}"
-                                class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded shadow"
-                                title="Lihat Surat">🔍</a>
-                                <a href="{{ route('suratkeluar.edit', $surat->id) }}"
-                                class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded shadow"
-                                title="Edit Surat">✏️</a>
-                                <form action="{{ route('suratkeluar.destroy', $surat->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus surat ini?')" class="inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1.5 rounded shadow" title="Hapus Surat">🗑️</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="8" class="px-4 py-2 text-sm text-gray-500 text-center">Tidak ada data surat keluar.</td>
-                    </tr>
-                    @endforeach
-                @else
-                    <tr>
-                        <td colspan="8" class="px-4 py-2 text-sm text-gray-500 text-center">Tidak ada data surat keluar.</td>
-                    </tr>
-                @endif
+                @forelse ($suratKeluar as $index => $surat)
+                <tr>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $suratKeluar->firstItem() + $index }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->nomor_surat }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->tanggal_surat }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->sifat_surat }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->lampiran }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->hal }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ $surat->tujuan_surat }}</td>
+                    <td class="px-4 py-2 text-sm">
+                        <div class="flex space-x-2">
+                            <a href="{{ route('suratkeluar.show', $surat->id) }}"
+                            class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded shadow"
+                            title="Lihat Surat">🔍</a>
+                            <a href="{{ route('suratkeluar.edit', $surat->id) }}"
+                            class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded shadow"
+                            title="Edit Surat">✏️</a>
+                            <form action="{{ route('suratkeluar.destroy', $surat->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus surat ini?')" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1.5 rounded shadow" title="Hapus Surat">🗑️</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="8" class="px-4 py-2 text-sm text-gray-500 text-center">Tidak ada data surat keluar.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

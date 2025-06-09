@@ -21,13 +21,17 @@ class SuratKeluarController extends Controller
             'lampiran' => 'required|string|max:255',
             'hal' => 'required|string|max:255',
             'tujuan_surat' => 'required|string|max:255',
-            'file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:2048',
         ]);
 
         if ($request->hasFile('file')) {
-            $path = $request->file('file')->store('suratkeluar', 'public');
+            $file = $request->file('file');
+            $originalName = $file->getClientOriginalName();
+            $path = $file->storeAs('suratkeluar', $originalName, 'public');
             $validated['file_path'] = $path;
         }
+
+        
 
         SuratKeluar::create($validated);
 
@@ -36,24 +40,25 @@ class SuratKeluarController extends Controller
 
     public function index(Request $request)
     {
-        $search = $request->search;
-        $query = SuratKeluar::query();
+        $search = $request->query('search');
 
-        if ($search) {
-            $query->where('nomor_surat', 'like', "%$search%")
-                  ->orWhere('hal', 'like', "%$search%")
-                  ->orWhere('tujuan_surat', 'like', "%$search%");
-        }
+        $suratKeluar = SuratKeluar::when($search, function ($query, $search) {
+            return $query->where('nomor_surat', 'like', "%{$search}%")
+                        ->orWhere('hal', 'like', "%{$search}%")
+                        ->orWhere('tujuan_surat', 'like', "%{$search}%");
+        })
+        ->latest('tanggal_surat')
+        ->paginate(10)
+        ->appends(['search' => $search]); // Menjaga query search saat pagination
 
-        $suratKeluar = $query->orderBy('tanggal_surat', 'desc')->paginate(10);
-
-        return view('suratkeluar.index', compact('suratKeluar'));
+        return view('tablesuratkeluar', compact('suratKeluar'));
     }
+
 
     public function show($id)
     {
         $surat = SuratKeluar::findOrFail($id);
-        return view('suratkeluar.show', compact('surat'));
+        return view('Dsuratkeluar', compact('surat'));
     }
 
     public function edit($id)

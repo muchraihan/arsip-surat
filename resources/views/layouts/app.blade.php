@@ -31,6 +31,7 @@
             <main>
                 {{ $slot }}
             </main>
+            <script>console.log("🔍 ini layout APP dipakai")</script>
         </div>
     </body>
 </html>

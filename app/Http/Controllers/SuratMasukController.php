@@ -33,7 +33,7 @@ class SuratMasukController extends Controller
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $originalName = time() . '_' . $file->getClientOriginalName();
+            $originalName = $file->getClientOriginalName();
             $path = $file->storeAs('surat_masuk', $originalName, 'public');
             $validated['file'] = $path;
         }
