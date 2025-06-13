@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('user.redirect');
+        return redirect()->intended(route('halamanutama', absolute: false));
     }
 
     /**

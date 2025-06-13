@@ -43,7 +43,7 @@
         <a href="#"
            class="flex items-center p-2 rounded {{ request()->is('report') ? 'bg-blue-600 hover:bg-blue-700' : 'hover:bg-gray-800' }}">
             <span class="material-icons mr-2">assessment</span> Report
-        </a>
+        </a>~
 
         <a href="#"
            class="flex items-center p-2 rounded {{ request()->is('backup') ? 'bg-blue-600 hover:bg-blue-700' : 'hover:bg-gray-800' }}">

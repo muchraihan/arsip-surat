@@ -1,3 +1,6 @@
+<head>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
 <header class="bg-white shadow p-4 flex justify-between items-center">
     <div class="flex items-center">
         <img src="{{ asset('build/assets/logokemenag.png') }}" alt="Logo Kemenag" class="w-8 h-8 mr-2">

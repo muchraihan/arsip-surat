@@ -62,18 +62,13 @@ Route::get('/tablesuratkeluar', function () {
 })->name('tablesuratkeluar');
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::middleware(['role:admin'])->group(function() {
-        Route::get('/dashboard', function() {
-            return view('halamanutama');
-        })->name('dashboard');
-    });
-    Route::redirect('settings', 'settings/profile');
-
-    Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
-    Volt::route('settings/password', 'settings.password')->name('settings.password');
-    Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+Route::get('/', function () {
+    return view('auth.login');
 });
+//login admin
+Route::get('/halamanutama', function () {
+    return view('halamanutama');
+})->middleware(['auth', 'verified'])->name('halamanutama');
 
 
 require __DIR__.'/auth.php';
