@@ -8,7 +8,7 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
 
-        <div class="bg-purple-600 text-white rounded shadow p-4">
+        <div class="bg-green-400 text-white rounded shadow p-4">
             <div class="flex justify-between items-center">
                 <div>
                     <p class="text-sm">SURAT MASUK</p>
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="bg-orange-500 text-white rounded shadow p-4">
+        <div class="bg-red-400 text-white rounded shadow p-4">
             <div class="flex justify-between items-center">
                 <div>
                     <p class="text-sm">SURAT KELUAR</p>

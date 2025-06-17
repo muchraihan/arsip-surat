@@ -32,12 +32,12 @@
                 id="searchInput"
                 value="{{ request('search') }}"
                 placeholder="Cari surat..."
-                class="border border-gray-300 rounded-l px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
+                class="border border-green-700 rounded-l px-3 py-2 focus:outline-none focus:ring focus:border-green-300"
                 {{ request('search') ? 'autofocus' : '' }}
             >
             <button
                 type="submit"
-                class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700"
+                class="bg-green-600 text-white px-4 py-2 rounded-r hover:bg-green-700"
             >
                 Cari
             </button>
@@ -70,17 +70,17 @@
     </div>
 
     <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-100">
+        <table class="min-w-full divide-y divide-red-200">
+            <thead class="bg-green-700">
                 <tr>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">No</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Nomor Surat</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Tanggal</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Pengirim</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Perihal</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Tujuan Surat</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Petunjuk Surat</th>
-                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Aksi</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-white">No</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-white">Nomor Surat</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-white">Tanggal</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-white">Pengirim</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-white">Perihal</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-white">Tujuan Surat</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-white">Petunjuk Surat</th>
+                    <th class="px-4 py-2 text-left text-sm font-medium text-white">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">

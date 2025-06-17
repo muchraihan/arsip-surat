@@ -1,17 +1,17 @@
 <head>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
-<header class="bg-white shadow p-4 flex justify-between items-center">
+<header class="bg-green-900 shadow p-4 flex justify-between items-center">
     <div class="flex items-center">
-        <img src="{{ asset('build/assets/logokemenag.png') }}" alt="Logo Kemenag" class="w-8 h-8 mr-2">
-        <span class="font-bold text-lg text-gray-800">Arsip-Surat <span class="text-gray-500">Kemenag</span></span>
+        <img src="{{ asset('logokemenag.png') }}" alt="Logo Kemenag" class="w-8 h-8 mr-2">
+        <span class="font-bold text-lg text-white">Arsip-Surat <span class="text-white">Kemenag</span></span>
     </div>
 
     @auth
     <div class="relative" x-data="{ open: false }" @click.away="open = false">
         {{-- Tombol pemicu dropdown --}}
         <button @click="open = !open" class="focus:outline-none">
-            <span class="material-icons text-gray-700 text-2xl">account_circle</span>
+            <span class="material-icons text-white text-2xl">account_circle</span>
         </button>
 
         {{-- KODE PENTING: HAPUS KELAS 'hidden' DARI SINI --}}

@@ -8,18 +8,13 @@
     @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100">
-
     @include('partials.header')
-
     <div class="flex">
         @include('partials.sidebar')
-
         <main class="flex-1 p-6">
             @yield('content')
         </main>
     </div>
-
     @include('partials.footer')
-
 </body>
 </html>
