@@ -43,12 +43,7 @@
 
                 <div class="mb-4">
                     <label for="kategori" class="block text-sm font-medium text-gray-700">Kategori</label>
-                    <select name="kategori" id="kategori" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
-                        <option value="">-- Pilih Kategori --</option>
-                        @foreach(['Kepala', 'Wakil', 'Sekretaris'] as $item)
-                            <option value="{{ $item }}" {{ $surat->kategori == $item ? 'selected' : '' }}>{{ $item }}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" name="kategori" id="kategori" value="{{ $surat->kategori }}" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
                 </div>
             </div>
 

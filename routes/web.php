@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\SuratKeluarController;
-use App\Http\Controllers\HalamanUtamaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LaporanController;
 
 // Surat Masuk
 Route::get('/surat-masuk/create', [SuratMasukController::class, 'create'])->name('suratmasuk.create');
@@ -30,6 +30,10 @@ Route::get('/suratkeluar/{id}/edit', [SuratKeluarController::class, 'edit'])->na
 Route::put('/suratkeluar/{id}', [SuratKeluarController::class, 'update'])->name('suratkeluar.update');
 
 Route::delete('/suratkeluar/{id}', [SuratKeluarController::class, 'destroy'])->name('suratkeluar.destroy');
+
+// laporan
+Route::get('/laporan/surat-masuk', [LaporanController::class, 'exportSuratMasuk'])->name('laporan.suratmasuk');
+Route::get('/laporan/surat-keluar', [LaporanController::class, 'exportSuratKeluar'])->name('laporan.suratkeluar');
 
 Route::get('/redirect', [UserController::class, 'redirectAfterLogin'])->name('user.redirect');
 
@@ -60,6 +64,10 @@ Route::get('/tablesuratmasuk', function () {
 Route::get('/tablesuratkeluar', function () {
     return view('tablesuratkeluar');
 })->name('tablesuratkeluar');
+
+Route::get('/laporan', function () {
+    return view('laporan');
+})->name('laporan.index');
 
 
 Route::get('/', function () {

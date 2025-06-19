@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SuratKeluar;
+use Illuminate\Support\Facades\Storage;
 
 class SuratKeluarController extends Controller
 {
@@ -64,13 +65,60 @@ class SuratKeluarController extends Controller
     public function edit($id)
     {
         $surat = SuratKeluar::findOrFail($id);
-        return view('suratkeluar.edit', compact('surat'));
+        return view('editkeluar', compact('surat'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $surat = SuratKeluar::findOrFail($id);
+
+        // Validasi hanya kolom yang sesuai dengan model
+        $request->validate([
+            'nomor_surat' => 'required|string|max:255',
+            'tanggal_surat' => 'required|date',
+            'sifat_surat' => 'required|string',
+            'lampiran' => 'nullable|string|max:255',
+            'hal' => 'required|string|max:255',
+            'tujuan_surat' => 'required|string|max:255',
+            'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:5120',
+        ]);
+
+        // Update field biasa (tanpa file)
+        $surat->fill($request->except('file'));
+
+        // Proses upload file jika ada
+        if ($request->hasFile('file')) {
+            // Hapus file lama jika ada
+            if ($surat->file_path && Storage::disk('public')->exists($surat->file_path)) {
+                Storage::disk('public')->delete($surat->file_path);
+            }
+
+            // Simpan file baru
+            $file = $request->file('file');
+            $originalName = $file->getClientOriginalName();
+            $path = $file->storeAs('suratkeluar', $originalName, 'public');
+            $surat->file_path = $path;
+        }
+
+        $surat->save();
+
+        return redirect()->route('suratkeluar.index')->with('success', 'Surat keluar berhasil diperbarui!');
+    }
+
 
     public function destroy($id)
     {
         $surat = SuratKeluar::findOrFail($id);
+
+        // Hapus file jika ada
+        if ($surat->file && Storage::exists('public/surat_keluar/' . $surat->file)) {
+            Storage::delete('public/surat_keluar/' . $surat->file);
+        }
+
+        // Hapus data dari database
         $surat->delete();
-        return redirect()->route('suratkeluar.index')->with('success', 'Surat berhasil dihapus.');
+
+        return redirect()->route('suratkeluar.index')->with('success', 'Surat keluar berhasil dihapus.');
     }
+
 }
